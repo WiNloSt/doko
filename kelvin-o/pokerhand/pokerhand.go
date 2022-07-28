@@ -22,15 +22,19 @@ func runGames(games string) float64 {
 func player1Win(game string) bool {
 	p1Hand := Hand{cards: game[0:14]}
 	p2Hand := Hand{cards: game[15:]}
-	for index := range p1Hand.getCards() {
+	p1Hand.sortCardOneTime()
+	return p1Hand.getCardRank(4) > p2Hand.getCardRank(4)
+}
+
+func (hand *Hand) sortCardOneTime() {
+	for index := range hand.getCards() {
 		if index == 4 {
 			continue
 		}
-		if p1Hand.getCardRank(index) > p1Hand.getCardRank(index+1) {
-			p1Hand.moveCard(index, index+1)
+		if hand.getCardRank(index) > hand.getCardRank(index+1) {
+			hand.moveCard(index, index+1)
 		}
 	}
-	return getRank(p1Hand.getCardRank(4)) > getRank(p2Hand.getCardRank(4))
 }
 
 func (hand *Hand) moveCard(fromIndex int, toIndex int) {
@@ -39,7 +43,7 @@ func (hand *Hand) moveCard(fromIndex int, toIndex int) {
 	hand.cards = hand.cards[0:14]
 }
 
-func getRank(cardRank byte) int {
+func (hand *Hand) getRank(cardRank byte) int {
 	return strings.Index("23456789TJQKA", string(cardRank))
 }
 
@@ -47,8 +51,8 @@ type Hand struct {
 	cards string
 }
 
-func (hand *Hand) getCardRank(cardIndex int) byte {
-	return hand.getCards()[cardIndex][0]
+func (hand *Hand) getCardRank(cardIndex int) int {
+	return hand.getRank(hand.getCards()[cardIndex][0])
 }
 
 func (hand *Hand) getCards() []string {
