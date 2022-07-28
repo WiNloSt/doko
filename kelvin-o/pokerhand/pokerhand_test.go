@@ -32,3 +32,9 @@ func TestPokerHand(t *testing.T) {
 		assert.Equal(t, 0.5, runGames(games))
 	})
 }
+
+func TestPlayer1Win(t *testing.T) {
+	t.Run("player 1 wins by 9 high", func(t *testing.T) {
+		assert.Equal(t, true, player1Win("2C 3S 4C 5H 9S 2D 3S 4D 5S 7C"))
+	})
+}
