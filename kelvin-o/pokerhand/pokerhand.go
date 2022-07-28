@@ -20,5 +20,5 @@ func runGames(games string) float64 {
 }
 
 func player1Win(game string) bool {
-	return game[12] == '8' || game[12] == '9' || game[12] == 'T'
+	return game[4*3] > game[9*3]
 }

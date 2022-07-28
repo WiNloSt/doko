@@ -32,11 +32,11 @@ func TestPokerHand(t *testing.T) {
 
 func TestPlayer1Win(t *testing.T) {
 	t.Run("player 1 wins by 9 high", func(t *testing.T) {
-		assert.Equal(t, true, player1Win(highestCardWith("9H")))
+		assert.Equal(t, true, player1Win(highestCardWith("9H")+" "+highestCardWith("7C")))
 	})
 
 	t.Run("player 1 wins by 10 high", func(t *testing.T) {
-		assert.Equal(t, true, player1Win(highestCardWith("TH")))
+		assert.Equal(t, true, player1Win(highestCardWith("TH"+" "+highestCardWith("7C"))))
 	})
 }
 
