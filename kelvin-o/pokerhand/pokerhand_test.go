@@ -7,6 +7,7 @@ import (
 )
 
 const p1WinByHighCard = "2C 3S 4C 5H 8S 2D 3S 4D 5S 7C"
+const player1WinsByHighCard9 = "2C 3S 4C 5H 9S 2D 3S 4D 5S 7C"
 const p2WinByHighCard = "2C 3S 4C 5H 7S 2D 3S 4D 5S 8C"
 
 func TestPokerHand(t *testing.T) {
@@ -35,6 +36,6 @@ func TestPokerHand(t *testing.T) {
 
 func TestPlayer1Win(t *testing.T) {
 	t.Run("player 1 wins by 9 high", func(t *testing.T) {
-		assert.Equal(t, true, player1Win("2C 3S 4C 5H 9S 2D 3S 4D 5S 7C"))
+		assert.Equal(t, true, player1Win(player1WinsByHighCard9))
 	})
 }
