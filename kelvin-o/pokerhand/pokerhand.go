@@ -22,8 +22,19 @@ func runGames(games string) float64 {
 func player1Win(game string) bool {
 	p1Hand := Hand{cards: game[0:14]}
 	p2Hand := Hand{cards: game[15:]}
+	if p1Hand.getCardRank(1) == 'K' {
+		p1Hand.cards += " "
+		fromIndex := 1
+		toIndex := 4
+		p1Hand.cards = p1Hand.cards[0*3:fromIndex*3] + p1Hand.cards[(fromIndex+1)*3:(toIndex+1)*3] + p1Hand.cards[fromIndex*3:(fromIndex+1)*3] + p1Hand.cards[(toIndex+1)*3:]
+		p1Hand.cards = p1Hand.cards[0:14]
+	}
 	if p1Hand.getCardRank(0) == 'A' {
-		p1Hand.cards = p1Hand.cards[3:] + " " + p1Hand.cards[0:2]
+		p1Hand.cards += " "
+		fromIndex := 0
+		toIndex := 4
+		p1Hand.cards = p1Hand.cards[0*3:fromIndex*3] + p1Hand.cards[(fromIndex+1)*3:(toIndex+1)*3] + p1Hand.cards[fromIndex*3:(fromIndex+1)*3] + p1Hand.cards[(toIndex+1)*3:]
+		p1Hand.cards = p1Hand.cards[0:14]
 	}
 	return getRank(p1Hand.getCardRank(4)) > getRank(p2Hand.getCardRank(4))
 }
