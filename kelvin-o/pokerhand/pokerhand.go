@@ -34,5 +34,9 @@ type Hand struct {
 }
 
 func (hand *Hand) getCardRank(cardIndex int) byte {
-	return strings.Split(hand.cards, " ")[cardIndex][0]
+	return hand.getCards()[cardIndex][0]
+}
+
+func (hand *Hand) getCards() []string {
+	return strings.Split(hand.cards, " ")
 }
