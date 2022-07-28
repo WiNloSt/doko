@@ -20,7 +20,9 @@ func runGames(games string) float64 {
 }
 
 func player1Win(game string) bool {
-	return getRank(game[4*3]) > getRank(game[9*3])
+	p1Hand := game[0:14]
+	p2Hand := game[15:]
+	return getRank(p1Hand[4*3]) > getRank(p2Hand[4*3])
 }
 
 func getRank(cardRank byte) int {
