@@ -20,7 +20,7 @@ func runGames(games string) float64 {
 }
 
 func player1Win(game string) bool {
-	return getRank(game[4*3]) > strings.Index("23456789TJQKA", string(game[9*3]))
+	return getRank(game[4*3]) > getRank(game[9*3])
 }
 
 func getRank(cardRank byte) int {
