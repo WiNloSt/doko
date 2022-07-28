@@ -34,6 +34,10 @@ func TestPlayer1Win(t *testing.T) {
 	t.Run("player 1 wins by 9 high", func(t *testing.T) {
 		assert.Equal(t, true, player1Win(highestCardWith("9H")))
 	})
+
+	t.Run("player 1 wins by 10 high", func(t *testing.T) {
+		assert.Equal(t, true, player1Win(highestCardWith("TH")))
+	})
 }
 
 func highestCardWith(card string) string {
