@@ -22,11 +22,13 @@ func runGames(games string) float64 {
 func player1Win(game string) bool {
 	p1Hand := Hand{cards: game[0:14]}
 	p2Hand := Hand{cards: game[15:]}
-	if p1Hand.getCardRank(1) == 'K' {
-		p1Hand.moveCard(1, 4)
-	}
-	if p1Hand.getCardRank(0) == 'A' {
-		p1Hand.moveCard(0, 4)
+	for index := range p1Hand.getCards() {
+		if index == 4 {
+			continue
+		}
+		if p1Hand.getCardRank(index) > p1Hand.getCardRank(index+1) {
+			p1Hand.moveCard(index, index+1)
+		}
 	}
 	return getRank(p1Hand.getCardRank(4)) > getRank(p2Hand.getCardRank(4))
 }
